@@ -1,5 +1,11 @@
 
 /**
+ * Expose `subscribe`.
+ */
+
+module.exports = subscribe;
+
+/**
  * Subscribe `fn` to events on `url`.
  *
  * @param {String} url
@@ -7,7 +13,7 @@
  * @return {Function} unbind
  */
 
-var on = exports.on = function(url, fn){
+function subscribe(url, fn){
   var source = new EventSource(url);
   source.onmessage = function(e){
     fn(e.data);
@@ -18,20 +24,4 @@ var on = exports.on = function(url, fn){
     on(url, fn);
   };
   return source.close.bind(source);
-};
-
-/**
- * Subscribe `fn` to one event on `url`.
- *
- * @param {String} url
- * @param {Function} fn
- * @return {Function}
- */
-
-var once = exports.once = function(url, fn){
-  var unbind = on(url, function(data){
-    unbind();
-    fn(data);
-  });
-  return unbind;
 };

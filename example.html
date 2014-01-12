@@ -9,7 +9,7 @@
   <script>
     var sse = require('sse');
     
-    var unbind = sse.on('/updates', function(data){
+    var unbind = sse('/updates', function(data){
       if (data == 'quit') unbind();
       console.log('data', data);
     });

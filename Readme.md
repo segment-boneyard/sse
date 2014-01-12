@@ -22,7 +22,7 @@ data: quit
 ```js
 var sse = require('sse');
 
-var unbind = sse.on('/updates', function(data){
+var unbind = sse('/updates', function(data){
   if (data == 'quit') unbind();
   console.log(data);
 });
@@ -42,13 +42,9 @@ var unbind = sse.on('/updates', function(data){
 
 ## API
 
-### sse.on(url, fn)
+### sse(url, fn)
 
   Subscribe `fn` to events on `url`. Returns an `unbind` function.
-
-### sse.once(url, fn)
-
-  Subscribe `fn` to one event on `url`. Returns an `unbind` function.
 
 ## License
 

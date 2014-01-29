@@ -21,7 +21,6 @@ function subscribe(url, fn){
   source.onerror = function(e){
     if (e.readyState == EventSource.CLOSED) return;
     console.error(e);
-    subscribe(url, fn);
   };
   return source.close.bind(source);
 };

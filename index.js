@@ -19,7 +19,7 @@ function subscribe(url, fn){
     fn(e.data);
   };
   source.onerror = function(e){
-    if (e.readyState == EventSource.CLOSED) return;
+    if (source.readyState == EventSource.CLOSED) return;
     console.error(e);
   };
   return source.close.bind(source);
